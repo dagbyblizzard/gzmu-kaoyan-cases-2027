@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>考研案例日报</title>
+<style>
+:root{
+  --paper:#f5f0e6;
+  --paper-2:#fdfaf3;
+  --card:#fffdf8;
+  --ink:#1d2a26;
+  --ink-2:#40514a;
+  --muted:#7c8982;
+  --line:#e4ddce;
+  --accent:#0f6b5c;
+  --accent-2:#b7791f;
+  --amber:#e0a84e;
+  --shadow:0 12px 34px rgba(22,45,38,.08);
+}
+html[data-theme="dark"]{
+  --paper:#101714;
+  --paper-2:#151f1a;
+  --card:#17221d;
+  --ink:#e9efe9;
+  --ink-2:#c7d2cb;
+  --muted:#93a69d;
+  --line:#2b3a33;
+  --accent:#7cc7b0;
+  --accent-2:#e0a84e;
+  --amber:#e0a84e;
+  --shadow:0 12px 34px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 600px at 90% -10%, rgba(255,250,240,.8), rgba(255,250,240,0) 60%),
+    var(--paper);
+  font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:anywhere;
+}
+html[data-theme="dark"] body{
+  background:
+    radial-gradient(900px 600px at 90% -10%, rgba(32,52,44,.55), rgba(32,52,44,0) 60%),
+    var(--paper);
+}
+a{color:var(--accent)}
+button{font:inherit}
+::selection{background:#d8eadf;color:#12352c}
+
+.hero{
+  color:#f2f7f4;
+  background:
+    radial-gradient(700px 420px at 85% -20%, rgba(224,168,78,.22), transparent 60%),
+    linear-gradient(135deg,#0d2f27 0%,#154639 62%,#1a5242 100%);
+  padding:22px 18px 26px;
+}
+.hero-inner{max-width:900px;margin:0 auto}
+.hero-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:10.5px;letter-spacing:.18em;color:#b7cec4;font-weight:700}
+.theme-btn{
+  cursor:pointer;border:1px solid rgba(255,255,255,.25);border-radius:999px;
+  background:rgba(255,255,255,.07);color:#eaf2ed;padding:5px 11px;font-size:11px;
+}
+.theme-btn:hover{background:rgba(255,255,255,.14)}
+.hero h1{
+  margin:18px 0 7px;font-family:"Songti SC","STSong","SimSun",serif;
+  font-size:34px;line-height:1.25;letter-spacing:.03em;font-weight:700;
+}
+.subtitle{margin:0;color:#c6d8d0;font-size:12.5px;line-height:1.7;letter-spacing:.02em}
+.hero-meta{display:flex;flex-wrap:wrap;gap:7px 15px;margin-top:16px;font-size:11px;color:#a8c1b6}
+.hero-meta b{color:#f2c77c;font-weight:700}
+
+.daynav{
+  position:sticky;top:0;z-index:20;
+  background:rgba(245,240,230,.9);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+html[data-theme="dark"] .daynav{background:rgba(16,23,20,.9)}
+.daynav-inner{
+  display:flex;gap:6px;overflow-x:auto;padding:8px 14px;
+  max-width:900px;margin:0 auto;scrollbar-width:none;
+}
+.daynav-inner::-webkit-scrollbar{display:none}
+.daynav a{
+  flex:0 0 auto;padding:5px 10px;border:1px solid var(--line);border-radius:999px;
+  color:var(--muted);font-size:11px;text-decoration:none;background:var(--paper-2);
+  transition:all .15s ease;white-space:nowrap;
+}
+.daynav a:hover{color:var(--accent);border-color:var(--accent)}
+.daynav a.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.daynav a.special-link{border-style:dashed;color:var(--accent-2)}
+.daynav a.special-link.active{background:var(--accent-2);border-color:var(--accent-2);color:#251704}
+
+.wrap{max-width:900px;margin:0 auto;padding:14px 12px 54px}
+.timeline{display:flex;flex-direction:column;gap:0}
+.day-card{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:20px 17px;margin:14px 0;box-shadow:var(--shadow);
+  scroll-margin-top:70px;
+}
+.day-card.special{
+  border-style:dashed;background:
+    linear-gradient(180deg,rgba(224,168,78,.07),transparent 180px),var(--card);
+}
+.day-head{border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:15px}
+.day-kicker{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:11px}
+.day-num{color:var(--accent-2);font-weight:700;letter-spacing:.08em}
+.day-date{color:var(--muted)}
+.badge-latest{
+  margin-left:auto;padding:2px 8px;border-radius:999px;
+  background:var(--amber);color:#2b1c05;font-size:9.5px;font-weight:700;letter-spacing:.05em;
+}
+.badge-special{
+  margin-left:auto;padding:2px 8px;border-radius:999px;
+  border:1px dashed var(--accent-2);color:var(--accent-2);font-size:9.5px;
+}
+.day-title{
+  margin:7px 0 10px;font-family:"Songti SC","STSong","SimSun",serif;
+  font-size:24px;line-height:1.38;color:var(--ink);font-weight:700;
+}
+.day-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill{
+  padding:3px 9px;border-radius:999px;background:#efe4cf;color:#7a4c12;
+  font-size:10px;font-weight:700;
+}
+html[data-theme="dark"] .pill{background:#3a2d16;color:#f0c77e}
+.tag{
+  padding:2px 8px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);font-size:10px;background:transparent;
+}
+
+.day-body{font-size:17px;line-height:1.8;color:var(--ink-2)}
+.day-body p{margin:0 0 12px;font-size:17px;line-height:1.8}
+.day-body strong{color:var(--ink);font-weight:700}
+.day-body h2{
+  margin:32px 0 12px;padding-bottom:8px;font-family:"Songti SC","STSong","SimSun",serif;
+  font-size:22px;line-height:1.4;color:var(--ink);border-bottom:1px solid var(--line);
+  scroll-margin-top:72px;
+}
+.day-body h3{
+  margin:24px 0 8px;padding-left:10px;font-size:18px;line-height:1.5;color:var(--ink);
+  border-left:4px solid var(--amber);scroll-margin-top:72px;
+}
+.day-body h4{margin:18px 0 6px;font-size:16px;color:var(--ink)}
+.day-body ul,.day-body ol{margin:8px 0 14px;padding-left:1.35em}
+.day-body li{margin:5px 0;font-size:17px;line-height:1.8}
+.day-body li::marker{color:var(--accent);font-weight:700}
+.day-body blockquote{
+  margin:16px 0;padding:12px 15px;border-left:4px solid var(--amber);
+  border-radius:0 9px 9px 0;background:#fbf4e3;color:#5d5343;
+  font-size:15px;line-height:1.8;
+}
+html[data-theme="dark"] .day-body blockquote{background:#1e2a23;color:#cbd6d0}
+.day-body a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+.day-body hr{border:0;border-top:1px dashed var(--line);margin:28px 0}
+.day-body code{
+  padding:1px 5px;border-radius:4px;background:#ece5d6;color:#7a3e12;
+  font-family:Consolas,"SFMono-Regular",monospace;font-size:.9em;
+}
+html[data-theme="dark"] .day-body code{background:#26332c;color:#f0c77e}
+.table-wrap{overflow-x:auto;margin:14px 0 20px;border:1px solid var(--line);border-radius:10px}
+.day-body table{width:100%;border-collapse:collapse;min-width:620px;background:var(--card);font-size:14px;line-height:1.7}
+.day-body th{
+  padding:9px 11px;text-align:left;font-weight:700;color:var(--ink);
+  background:#eee7d8;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+html[data-theme="dark"] .day-body th{background:#213029}
+.day-body td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.day-body tbody tr:nth-child(even) td{background:rgba(238,231,216,.32)}
+html[data-theme="dark"] .day-body tbody tr:nth-child(even) td{background:#1b261f}
+.day-body tbody tr:last-child td{border-bottom:0}
+
+.day-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:26px;padding-top:13px;border-top:1px dashed var(--line);
+  font-size:10.5px;color:var(--muted);
+}
+.day-foot a{color:var(--accent);text-decoration:none}
+.page-foot{
+  margin:24px 0 0;padding:0 8px;text-align:center;
+  font-size:10px;line-height:1.9;color:var(--muted);
+}
+.empty{padding:70px 10px;text-align:center;color:var(--muted)}
+.empty b{display:block;margin-bottom:8px;font-size:18px;color:var(--ink-2)}
+#toTop{
+  position:fixed;right:14px;bottom:16px;z-index:30;
+  width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:var(--card);color:var(--accent);box-shadow:var(--shadow);
+  display:none;place-items:center;cursor:pointer;font-size:16px;
+}
+#toTop.show{display:grid}
+
+@media (min-width:720px){
+  .hero{padding:30px 24px 32px}
+  .hero h1{font-size:42px}
+  .subtitle{font-size:13.5px}
+  .wrap{padding:20px 24px 70px}
+  .day-card{padding:28px 30px;margin:18px 0;border-radius:18px}
+  .day-title{font-size:28px}
+  .day-body{font-size:17px}
+}
+
+/* 窄屏：表格变“标签 + 内容”卡片 */
+@media (max-width:640px){
+  .table-wrap{overflow:visible;border:0;border-radius:0;margin:14px 0 18px}
+  .day-body table{display:block;min-width:0;border-collapse:collapse;background:transparent}
+  .day-body thead{display:none}
+  .day-body tbody{display:block}
+  .day-body tr{
+    display:block;border:1px solid var(--line);border-radius:10px;
+    margin:9px 0;padding:5px 0;background:var(--paper-2);
+  }
+  .day-body td{
+    display:grid;grid-template-columns:6.8em minmax(0,1fr);gap:8px;
+    width:auto;padding:6px 11px;border:0;background:transparent!important;
+    font-size:15px;line-height:1.7;
+  }
+  .day-body td::before{
+    content:attr(data-label);font-weight:700;color:var(--muted);
+    font-size:12px;line-height:1.7;
+  }
+  .day-body td:empty{display:none}
+}
+
+@media print{
+  .hero,.daynav,.theme-btn,#toTop,.day-foot{display:none!important}
+  body{background:#fff;font-size:12pt}
+  .wrap{max-width:none;padding:0}
+  .day-card{border:0;box-shadow:none;padding:0;margin:0 0 24pt;break-inside:avoid}
+  .day-body table{min-width:0}
+  .table-wrap{overflow:visible}
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div class="brand">广医公管 · 2027</div>
+      <button id="themeBtn" class="theme-btn" type="button" aria-label="切换深色模式">深色</button>
+    </div>
+    <h1>考研案例日报</h1>
+    <p class="subtitle">每天 5 个案例 · 3 个今年热点 + 2 个经典 · 五科全覆盖</p>
+    <div class="hero-meta">
+      <span>共 <b>1</b> 天</span>
+      <span>更新至 <b>11月20日</b></span>
+      <span id="countdown">距初试 -- 天</span>
+    </div>
+  </div>
+</header>
+<nav class="daynav" id="daynav"><div class="daynav-inner"><a href="#day-1" data-day="1" class="active">第1天</a><a class="special-link" href="#special-1">专题</a></div></nav>
+<main class="wrap">
+  <section class="timeline" aria-label="每日案例时间线">
+    
+<article class="day-card" id="day-1" data-day="1">
+  <header class="day-head">
+    <div class="day-kicker">
+      <span class="day-num">第 1 天</span>
+      <span class="day-date">11月20日 · 周五</span>
+      <span class="badge-latest">最新</span>
+    </div>
+    <h2 class="day-title">医保支付改革、县域医共体、生育支持——政策从“文件”到“落地”的三个切面</h2>
+    <div class="day-meta"><span class="pill">距初试 29 天</span><span class="tag">医疗保障学</span><span class="tag">管理学</span><span class="tag">组织行为学</span><span class="tag">卫生事业管理学</span><span class="tag">公共政策导论</span></div>
+  </header>
+  <div class="day-body"><blockquote><strong>今日精析</strong>：广东按病种付费经办规程（医疗保障学）<br><strong>结构</strong>：1 个精析 + 4 个速览｜管理学、组织行为学、卫生事业管理学、公共政策导论、医疗保障学全覆盖<br><strong>口径说明</strong>：本期起按你指定的五科组织；“医疗保障学”覆盖 DRG/DIP、医保基金监管、长护险、多层次保障、集采、门诊共济等医保主线，兼容预测文档中“社会保障概论”的相关考点。</blockquote>
+<hr>
+<h2 id="sec-1">一、今日精析｜广东按病种付费经办规程：DRG/DIP 从“扩面”走向“精细化管理”（医疗保障学）</h2>
+<h3 id="sec-2">1. 案例材料（可直接作材料分析题题干）</h3>
+<p>2026年3月12日，广东省医疗保障局印发《广东省按病种付费医疗保障经办管理规程》，自2026年5月1日起施行，有效期5年。规程把 DRG（按疾病诊断相关分组付费）和 DIP（按病种分值付费）统一纳入“按病种付费”，覆盖协议管理、数据采集、预算管理、核心要素、特殊病例单议、结算清算、审核核查、配套机制等环节。</p>
+<p>在预算端，年度按病种付费可分配资金总额增长率不得高于10%，可预留不超过10%的风险调节金用于合理超支分担；在结算端，月度结算可预留不超过5%的质量保证金，并要求压缩结算周期、推进即时结算；在例外端，住院时间长、费用高、使用新药新技术的复杂病例可申报“特殊病例单议”，例数原则上不超过 DRG 结算人次的5%或 DIP 结算人次的5‰；在监管端，要求对高套病种、分解住院、低标入院、推诿病人、转嫁住院费用等疑点开展核查，并将考核评价与年度清算挂钩。</p>
+<p>这套规则承接国家医保局2025年印发的《医疗保障按病种付费管理暂行办法》和《按病种付费医疗保障经办管理规程（2025版）》，标志着按病种付费从“扩面”进入“精细化管理”阶段。</p>
+<h3 id="sec-3">2. 事实与来源</h3>
+<ul><li><strong>来源</strong>：广东省医疗保障局，2026-03-12 印发（中山市医保局网站 2026-06-08 转发）</li><li><strong>链接</strong>：<a href="http://hsa.zs.gov.cn/zwgk/gfxwj/content/post_2619918.html" target="_blank" rel="noopener noreferrer">《广东省按病种付费医疗保障经办管理规程》</a></li><li><strong>核查提示</strong>：规程为省级经办管理文件，具体支付标准、分组规则由各市制定；引用时注意区分“规程”与“国家暂行办法”，不要混用文号。</li></ul>
+<h3 id="sec-4">3. 理论链接</h3>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话定义</th><th>对应考点/预测题</th></tr></thead><tbody><tr><td data-label="概念">按病种付费（DRG/DIP）</td><td data-label="一句话定义">以疾病诊断分组或病种分值为付费单元，实行“打包付费”，替代按项目付费</td><td data-label="对应考点/预测题">预测清单·社会保障概论第13条：DRG/DIP ★★★★★</td></tr><tr><td data-label="概念">总额预算管理</td><td data-label="一句话定义">以收定支、收支平衡、略有结余，先确定区域年度可分配资金总额</td><td data-label="对应考点/预测题">医保支付改革、基金可持续</td></tr><tr><td data-label="概念">结余留用、合理超支分担</td><td data-label="一句话定义">医疗机构控费形成的结余可留用，合理超支由风险调节金分担，形成激励相容</td><td data-label="对应考点/预测题">医保支付机制、公立医院运营</td></tr><tr><td data-label="概念">特殊病例单议</td><td data-label="一句话定义">对费用高、病情复杂、使用新药新技术的病例单独评议，按项目付费或调整支付标准</td><td data-label="对应考点/预测题">例外管理、政策执行的灵活性</td></tr><tr><td data-label="概念">医保基金监管</td><td data-label="一句话定义">通过协议管理、智能审核、考核评价、年度清算等守护基金安全</td><td data-label="对应考点/预测题">预测清单·社会保障概论第16条：医保基金监管 ★★★★</td></tr></tbody></table></div>
+<h3 id="sec-5">4. 命题角度</h3>
+<ul><li><strong>名词解释</strong>：按病种付费（DRG/DIP）</li><li><strong>简答</strong>：简述按病种付费“预算—分组—结算—清算—监管”闭环的基本内容。</li><li><strong>论述</strong>：结合广东规程，论述 DRG/DIP 支付方式改革对医院行为、患者负担和医保基金的影响，并提出配套政策。</li><li><strong>材料分析</strong>：材料中的“总额预算增长率不高于10%”“特殊病例单议”“质量保证金”分别解决什么问题？这对医保精细化管理有何启示？</li></ul>
+<h3 id="sec-6">5. 答题框架（背这一页）</h3>
+<p><strong>（1）内涵：从“为项目买单”到“为病种/健康结果买单”</strong> 按病种付费把医保基金从“按服务数量付费”转为“按病种打包付费”，医保部门从“被动报销”转向“战略购买”，医院从“多做项目多收入”转向“控成本、提效率、保质量”。</p>
+<p><strong>（2）机制：一个闭环</strong> 预算（区域总额、增长率上限、风险调节金）→ 分组（DRG 细分组 / DIP 病种目录）→ 分值或点值 → 月度结算（质量保证金、即时结算）→ 年度清算（结余留用、超支分担、二次分配）→ 考核监管（智能审核、特殊病例单议、协议管理）。</p>
+<p><strong>（3）影响：三方两面的“双刃剑”</strong></p>
+<ul><li>医院：倒逼成本核算、病案质量、临床路径、学科结构调整；风险是高套病种、分解住院、低标入院、推诿重症、抑制新技术。</li><li>患者：控费可减轻负担，但若监管不到位，可能出现服务不足、推诿、自费转嫁。</li><li>医保：提高基金使用效率、增强可持续性，但需防止“控费”压倒“提质”。</li></ul>
+<p><strong>（4）配套：用“例外机制+质量考核”校准激励</strong> 特殊病例单议守住重症和新技术的可及性；质量保证金和考核评价防止“为控费而降质”；智能审核和协议管理守住基金安全；协商谈判和数据公开降低医院的不确定性；紧密型医共体总额付费则把“控费”升级为“健康管理”。</p>
+<p><strong>（5）收束</strong> 支付方式改革不是单纯“控费”，而是医保购买机制的重构；成败不只在分组技术，更在利益分配、质量考核和多部门协同。</p>
+<blockquote>一句话收束：<strong>总额预算管住“总盘子”，结余留用形成“内生动力”，特殊病例单议守住“例外公平”，智能监管守住“基金安全”。</strong></blockquote>
+<h3 id="sec-7">6. 金句与术语</h3>
+<ol><li>“从按项目付费转向按病种付费，本质是把医保基金从‘为服务数量买单’转向‘为合理诊疗和健康结果买单’。”</li><li>“DRG/DIP 不是万能钥匙，单病种付费可能带来高套、分解、推诿等逆向选择，必须用质量考核和例外机制校准。”</li><li>“支付方式是医保、医疗、医药协同发展的‘总开关’。”</li><li>“改革的难点不在技术分组，而在利益分配与行为激励。”</li><li>“控费是手段，提质是目的，患者获益是底线。”</li></ol>
+<h3 id="sec-8">7. 关联预测题</h3>
+<ul><li>★★★★★ DRG/DIP 医保支付改革的核心逻辑（简答/论述）</li><li>★★★★ 医保基金监管手段（简答）</li><li>★★★★ 公立医院高质量发展与运营管理（论述）</li><li>★★★ 紧密型医共体医保总额付费（与 H-001 交叉）</li></ul>
+<hr>
+<h2 id="sec-9">二、案例速览</h2>
+<h3 id="sec-10">速览 1｜胖东来37.93亿元资产转员工股本：一场“利润共享”的管理实验（管理学）</h3>
+<ul><li><strong>事实</strong>：2026年3月8日，胖东来创始人于东来公布资产分配方案：集团10194名员工，资产总额37.93亿元；管理团队718人对应39.9%，技术团队563人对应12.3%，一线员工8913人对应47.7%，其中8633名普通员工按人均20万元分配。未来资产作为公司股本，每年利润的50%给团队发奖金、50%归股东。2月23—24日的内部调研回收9686份有效问卷（回收率94.83%），82.38%的员工拒绝“降薪增假”，78.83%对现有每年40天休假“非常满意”。此前，于东来于2月11日宣布春节后退休；2月12日又表示胖东来“永不上市”、做“学校式企业”。</li><li><strong>核心考点</strong>：人本管理、需要层次理论、双因素理论、公平理论、利益相关者理论、组织文化、员工参与和民主管理。</li><li><strong>命题角度</strong>：结合胖东来，分析“高薪酬+高休假+高要求”模式为何能同时实现员工满意与组织绩效；其可复制性边界是什么？</li><li><strong>一句话结论</strong>：高投入换高认同，高认同换高服务，高服务换高绩效；可复制的是利润共享、民主参与、尊严保护机制，不可复制的是创始人价值观、区域市场与规模克制。</li><li><strong>来源</strong>：<a href="https://stcn.com/article/detail/3667061.html" target="_blank" rel="noopener noreferrer">证券时报（界面新闻）2026-03-09</a></li></ul>
+<h3 id="sec-11">速览 2｜北大医院大兴院区“班子与科室面对面”：多院区协同中的组织沟通（组织行为学）</h3>
+<ul><li><strong>事实</strong>：2026年7月21日，北京大学第一医院大兴院区召开“党建引领高质量发展”专题座谈会，院区班子与临床、医技、职能科室负责人面对面，把人才梯队、暑期高峰人力调配、双向转诊衔接、资源灵活配置、信息化支撑等问题摆上桌面，职能部门现场认领、承诺限时办结。大兴院区2026年上半年门诊人次同比增长24.4%，手术人次增长53.49%，四级手术人次增长46.26%；其“48小时例会制度”在开办期开了87次例会，3个月完成消防和竣工验收、2个月办好医疗备案，2023年12月18日正式启用。</li><li><strong>核心考点</strong>：组织沟通（上行/下行/平行）、群体决策、问题导向管理、变革型领导、组织支持、跨部门协同、组织学习。</li><li><strong>命题角度</strong>：结合案例，分析“面对面座谈会+问题清单+限时办结”在医院多院区管理中的作用与局限。</li><li><strong>一句话结论</strong>：高频沟通降低信息不对称，现场认领形成责任闭环，党建引领提供合法性；但需制度化、数据化、授权化，避免“运动式治理”。</li><li><strong>来源</strong>：<a href="https://www.pkufh.com/Html/News/Articles/70123.html" target="_blank" rel="noopener noreferrer">北京大学第一医院官网 2026-07-24</a></li></ul>
+<h3 id="sec-12">速览 3｜广东县域医共体“新三年”：从“建起来”到“紧密起来”（卫生事业管理学）</h3>
+<ul><li><strong>事实</strong>：2026年10月8日，广东省政府办公厅印发《广东省紧密型县域医疗卫生共同体高质量发展行动方案（2026—2028年）》（粤办函〔2026〕297号）。方案提出：2026年推动90%以上县域医共体达到医保支付改革申请条件；到2027年底，100%的县域医共体实现统一法定代表人、100%实现覆盖全部基层分院的“分布式检查、集中式诊断”；到2028年底，力争85%以上的县域基层诊疗量占比达65%以上，60%的县域医共体建成信息平台，基层分院药品配备品种数比2025年提高20%，县域内中医类诊疗量占比提高到35%。同时要求每个基层分院至少有1名上级医院中级及以上职称人员派驻帮扶、连续半年以上，医保结余留用向基层和健康管理倾斜，推行“县域医共体一张床”。</li><li><strong>核心考点</strong>：分级诊疗、紧密型县域医共体、卫生资源配置、卫生规划、整合型医疗服务体系、医保支付协同、强基层。</li><li><strong>命题角度</strong>：结合广东行动方案，论述紧密型县域医共体“紧密”的内涵、建设难点与对策。</li><li><strong>一句话结论</strong>：紧密不靠“挂牌”，靠统一法人、统一财务、统一人事、统一药械、统一信息、统一绩效，再加医保总额付费、人才下沉和健康结果考核。</li><li><strong>来源</strong>：<a href="https://www.gd.gov.cn/gkmlpt/content/4/4971/post_4971251.html" target="_blank" rel="noopener noreferrer">广东省人民政府 2026-10-27</a></li></ul>
+<h3 id="sec-13">速览 4｜2026年度育儿补贴发放超2500万人：现金补贴的政策执行链（公共政策导论）</h3>
+<ul><li><strong>事实</strong>：2026年7月21日，国家卫生健康委披露：2026年度育儿补贴已提交申请2751万条，审核通过2713万条，已发放2516万人；2022—2024年出生婴幼儿的首次申请截止时间延长至2026年12月31日，系统新增“一键续领”。同期，2026年全国拟新增15万个普惠托位，新增1000家乡镇卫生院和社区卫生服务中心提供儿童常见病、多发病诊疗，1万家医疗机构提供早孕关爱门诊，为满13周岁女孩免费接种 HPV 疫苗；17个省份生育保险基金覆盖产假天数达到158天，所有省份将符合条件的辅助生殖项目纳入医保，生育津贴直接发放至个人；学前一年免费教育2025年惠及1400万儿童。</li><li><strong>核心考点</strong>：政策工具（现金补贴、服务供给、保险）、政策执行、政策评估、政策调整、生育支持政策体系、政策反馈。</li><li><strong>命题角度</strong>：结合材料，分析育儿补贴政策执行中的难点，并说明如何从“现金补贴”走向“政策工具组合”。</li><li><strong>一句话结论</strong>：现金补贴只解决“生得起”的一部分，托育、教育、住房、就业和生育保险共同决定“敢不敢生”；执行关键是信息触达、基层能力、资金可持续和部门协同。</li><li><strong>来源</strong>：<a href="https://m.gmw.cn/2026-07/21/content_1304536112.htm" target="_blank" rel="noopener noreferrer">光明网（转央视新闻）2026-07-21</a></li></ul>
+<hr>
+<h2 id="sec-14">三、今日案例串记</h2>
+<div class="table-wrap"><table><thead><tr><th>科目</th><th>案例</th><th>核心考点</th><th>一句话答题结论</th></tr></thead><tbody><tr><td data-label="科目">管理学</td><td data-label="案例">胖东来37.93亿元资产转员工股本</td><td data-label="核心考点">人本管理、双因素、公平理论、组织文化</td><td data-label="一句话答题结论">利润共享+民主参与+尊严保护，形成“高投入—高认同—高绩效”闭环</td></tr><tr><td data-label="科目">组织行为学</td><td data-label="案例">北大医院大兴院区“班子与科室面对面”</td><td data-label="核心考点">组织沟通、群体决策、变革型领导、组织支持</td><td data-label="一句话答题结论">高频沟通+问题清单+限时办结，把多院区协同从“层级推动”变成“责任闭环”</td></tr><tr><td data-label="科目">卫生事业管理学</td><td data-label="案例">广东县域医共体2026—2028行动方案</td><td data-label="核心考点">分级诊疗、医共体、卫生资源配置</td><td data-label="一句话答题结论">“紧密”的关键是统一法人、统一财务人事药械信息绩效+医保总额付费+人才下沉</td></tr><tr><td data-label="科目">公共政策导论</td><td data-label="案例">2026年度育儿补贴发放超2500万人</td><td data-label="核心考点">政策工具、政策执行、政策评估</td><td data-label="一句话答题结论">从“发钱”转向“现金+服务+保险+教育+住房”的工具组合</td></tr><tr><td data-label="科目">医疗保障学</td><td data-label="案例">广东按病种付费经办规程</td><td data-label="核心考点">DRG/DIP、总额预算、结余留用、基金监管</td><td data-label="一句话答题结论">预算管总盘、结余给动力、单议守例外、监管守安全</td></tr></tbody></table></div>
+<hr>
+<h2 id="sec-15">四、明日关注</h2>
+<ol><li><strong>按病种付费落地反馈</strong>：广东各市对规程的执行细则、首批清算案例，可能形成 <code>I-001-U1</code> 追踪。</li><li><strong>县域医共体验收</strong>：2026年90%医共体达到医保支付改革申请条件的进展，可能形成 <code>H-001-U1</code>。</li><li><strong>育儿补贴收尾</strong>：2026年12月31日延长申请截止前的发放进度、2027年标准调整信号，可能形成 <code>P-001-U1</code>。</li></ol>
+<blockquote>注：以上为待核实线索，未写成事实；后续以官方发布为准。</blockquote></div>
+  <footer class="day-foot">
+    <span>5 个案例 · 5 个来源链接</span>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+</article>
+<article class="day-card special" id="special-1">
+  <header class="day-head">
+    <div class="day-kicker">
+      <span class="day-num">专题 S-001</span>
+      <span class="day-date">11月20日 · 周五</span>
+      <span class="badge-special">加更</span>
+    </div>
+    <h2 class="day-title">《医疗保障法（草案）》三审：医保治理从“政策推动”走向“法治保障”</h2>
+    <div class="day-meta"><span class="tag">专题</span></div>
+  </header>
+  <div class="day-body"><blockquote><strong>入库</strong>：2026-11-20<br><strong>主科目</strong>：医疗保障学　<strong>辅科目</strong>：公共政策导论<br><strong>为什么现在做</strong>：2026-08-25 草案三审；长护险拟入法、异地就医结算细化、基金监管充实；2026-04-30—05-29 公开征求意见收到 343 人次 1845 条意见。<br><strong>考试价值</strong>：这是 828 里“医保 + 法治 + 政策过程”的交叉题，可出名词解释、简答、论述、材料分析四种题型。</blockquote>
+<hr>
+<h2 id="sec-1">一、案例材料（可作材料分析题题干）</h2>
+<p>2026年8月25日，十四届全国人大常委会第二十四次会议审议《中华人民共和国医疗保障法（草案）》三审稿。草案二审稿已于2026年4月提请十四届全国人大常委会第二十二次会议审议。2026年4月30日至5月29日公开征求意见期间，中国人大网收到343人次提出的1845条意见，代表工作信息化平台收到14位全国人大代表提出的39条意见，另收到来信10封。</p>
+<p>三审稿拟作六方面修改：一是立法目的进一步体现健康优先发展战略；二是完善医疗保障体系有关规定；三是充实医疗保障基金管理有关规定；四是细化异地就医医药费用结算要求；五是增加长期护理保险相关规定；六是完善有关法律责任规定。</p>
+<p>在基金管理方面，草案明确：国务院医疗保障行政部门在组织制定基本医疗保险基金支付范围、组织开展循证医学和经济性评价时，除征求有关部门意见外，还应当采取适当方式听取医疗机构、药品经营单位、相关企业、专家和参保人员的意见；建立和完善药品、医用耗材集中采购制度；实行多元复合式医疗保险支付方式；优化异地就医直接结算服务。</p>
+<p>目前草案仍处于审议阶段，尚未颁布实施。</p>
+<hr>
+<h2 id="sec-2">二、事实与来源</h2>
+<ul><li><strong>三审与六项修改</strong>：中国人大网（转中国新闻网），2026-08-26，<a href="http://www.npc.gov.cn/npc/c1773/c1848/c21114/ylbzflf/ylbzflf003/202608/t20260826_456950.html" target="_blank" rel="noopener noreferrer">《医疗保障法草案将三审 增加长期护理保险相关规定》</a></li><li><strong>异地就医与长护险</strong>：中国人大网（转中国新闻网），2026-08-26，<a href="http://www.npc.gov.cn/npc/c1773/c1848/c21114/ylbzflf/ylbzflf003/202608/t20260826_456949.html" target="_blank" rel="noopener noreferrer">《医疗保障法草案将三审 拟细化异地就医医药费用结算要求》</a></li><li><strong>公开征求意见数据</strong>：贵州人大网转载，2026-08-24，<a href="https://www.gzrd.gov.cn/xwzx/mtgz/202608/t20260824_90772702.html" target="_blank" rel="noopener noreferrer">《全国人大常委会法工委公布部分法律案公开征求意见及吸收采纳情况》</a></li><li><strong>核查提示</strong>：引用时写“草案三审稿”，不要写成“《医疗保障法》已颁布”；具体条文以中国人大网公布的草案文本为准。</li></ul>
+<hr>
+<h2 id="sec-3">三、理论链接</h2>
+<div class="table-wrap"><table><thead><tr><th>概念</th><th>一句话定义</th><th>对应考点/预测题</th></tr></thead><tbody><tr><td data-label="概念">医疗保障法</td><td data-label="一句话定义">医疗保障领域基础性、统领性法律，规范医保体系、基金、待遇、支付、服务、监管与法律责任</td><td data-label="对应考点/预测题">医疗保障法治化 ★★★★★</td></tr><tr><td data-label="概念">政策合法化</td><td data-label="一句话定义">政策方案经法定主体、法定程序审议批准，转化为具有合法性与约束力的法律/政策的过程</td><td data-label="对应考点/预测题">公共政策过程 ★★★★</td></tr><tr><td data-label="概念">政策议程</td><td data-label="一句话定义">社会问题进入政府决策日程的过程；医保立法经历起草、征求意见、二审、三审</td><td data-label="对应考点/预测题">政策议程 ★★★★</td></tr><tr><td data-label="概念">长期护理保险</td><td data-label="一句话定义">为失能人员的基本生活照料和医疗护理费用提供保障的“第六险”</td><td data-label="对应考点/预测题">长护险 ★★★★</td></tr><tr><td data-label="概念">医保基金监管</td><td data-label="一句话定义">对基金筹集、支付、使用进行监督，防范欺诈骗保和基金流失</td><td data-label="对应考点/预测题">基金监管 ★★★★★</td></tr><tr><td data-label="概念">异地就医直接结算</td><td data-label="一句话定义">参保人在参保地以外就医时，在就医地直接结算医保费用</td><td data-label="对应考点/预测题">异地就医 ★★★</td></tr><tr><td data-label="概念">多元复合式支付方式</td><td data-label="一句话定义">按病种、按人头、按床日、按项目等组合付费，而非单一按项目付费</td><td data-label="对应考点/预测题">DRG/DIP、支付方式改革 ★★★★★</td></tr><tr><td data-label="概念">集中带量采购</td><td data-label="一句话定义">以量换价、量价挂钩的药品耗材采购方式</td><td data-label="对应考点/预测题">集采 ★★★★</td></tr></tbody></table></div>
+<hr>
+<h2 id="sec-4">四、命题角度</h2>
+<ul><li><strong>名词解释</strong>：医疗保障法；政策合法化；长期护理保险。</li><li><strong>简答</strong>：简述《医疗保障法（草案）》三审稿的主要修改内容；或简述医保立法的意义。</li><li><strong>论述</strong>：结合医保法立法，论述医疗保障治理法治化的内涵、难点与路径。</li><li><strong>材料分析</strong>：材料中“公开征求意见—二审—三审”体现了怎样的政策过程？为什么长护险要写入医保法？</li></ul>
+<hr>
+<h2 id="sec-5">五、答题框架（背这一页）</h2>
+<p><strong>（1）为什么立法：从“政策推动”到“法治保障”</strong> 医保改革已进入深水区，靠文件推动容易出现政策碎片化、地方执行差异、部门协调困难。把医保体系、基金、待遇、支付、监管等基本制度上升为法律，可以稳定预期、规范权力、保障参保人权利，为“三医协同”提供法治基础。</p>
+<p><strong>（2）立法过程：一次典型的政策合法化</strong> 起草 → 公开征求意见（343人次、1845条意见）→ 二审 → 三审 → 表决通过 → 公布施行。公开征求意见把医疗机构、医药企业、专家、参保人的多元利益纳入决策，提高立法的科学性与民主性；人大审议则完成合法性确认。</p>
+<p><strong>（3）三审亮点：六个“更”</strong></p>
+<ul><li>立法目的更鲜明：体现健康优先发展战略；</li><li>体系更完整：完善医疗保障体系有关规定；</li><li>基金更安全：充实基金管理规定，支付范围、循证医学和经济性评价要听取多方意见；</li><li>结算更便捷：细化异地就医医药费用结算；</li><li>制度更定型：增加长期护理保险；</li><li>责任更严格：完善法律责任规定。</li></ul>
+<p><strong>（4）难点：立法之后怎么落地</strong> 部门协同（医保、卫健、药监、财政）、央地事权与支出责任、待遇公平与基金可持续、长护险筹资与失能评估、法律与现行政策的衔接、监管能力与执法队伍。</p>
+<p><strong>（5）意义：医保治理现代化</strong> 对参保人：权利有法律保障；对医疗机构：规则更稳定、预期更明确；对医保部门：从行政推动转向依法治理；对医药企业：集采、支付、价格规则法治化；对国家：多层次医疗保障体系和健康中国战略的法治支撑。</p>
+<blockquote>一句话收束：<strong>医保法不是把现有政策简单“抄”进法律，而是把医保治理的基本关系、基本规则和基本责任固定下来，让改革“于法有据”。</strong></blockquote>
+<hr>
+<h2 id="sec-6">六、金句与术语</h2>
+<ol><li>“立法过程本身就是一次政策合法化：公开征求意见不是形式，而是把多元利益纳入决策。”</li><li>“长护险拟入法，意味着‘第六险’从试点探索走向制度定型。”</li><li>“基金监管写入法律草案，是把老百姓的‘看病钱、救命钱’从行政监管上升为法律约束。”</li><li>“医保改革越深入，越需要法治来稳定预期、规范权力、保障权利。”</li><li>“法治化不是给改革踩刹车，而是给改革装护栏、给预期上保险。”</li></ol>
+<hr>
+<h2 id="sec-7">七、关联预测题</h2>
+<ul><li>★★★★★ 医疗保障法/医保治理法治化（论述/材料）</li><li>★★★★ 长期护理保险（名解/简答）</li><li>★★★★ 政策合法化/政策议程（公共政策）</li><li>★★★ 异地就医直接结算、集采、多元复合式支付（简答）</li><li>★★★ 医保基金监管的法律责任（材料）</li></ul></div>
+  <footer class="day-foot">
+    <span>专题案例 · 不计入每日 5 例</span>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+</article>
+  </section>
+  <footer class="page-foot">
+    <p>数据源：考研案例库 Markdown · 自动生成于 2026-11-20 23:04</p>
+    <p>仅收录公开报道与官方文件；引用请以原文为准。共 1 天。</p>
+  </footer>
+</main>
+<button id="toTop" type="button" aria-label="回到顶部">↑</button>
+<script>
+(function(){
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var saved = null;
+  try { saved = localStorage.getItem('kaoyan-theme'); } catch (e) {}
+  var forced = null;
+  try { forced = new URLSearchParams(location.search).get('theme'); } catch (e) {}
+  root.dataset.theme = saved || (forced === 'dark' || forced === 'light' ? forced : 'light');
+  function refreshTheme(){
+    if (themeBtn) themeBtn.textContent = root.dataset.theme === 'dark' ? '浅色' : '深色';
+  }
+  refreshTheme();
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function(){
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      try { localStorage.setItem('kaoyan-theme', root.dataset.theme); } catch (e) {}
+      refreshTheme();
+    });
+  }
+
+  var exam = new Date('2026-12-19T00:00:00');
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var left = Math.ceil((exam - today) / 86400000);
+  var countdown = document.getElementById('countdown');
+  if (countdown) {
+    countdown.textContent = left > 0 ? ('距初试 ' + left + ' 天') : (left === 0 ? '今天初试' : '初试已结束');
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('.daynav a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.day-card'));
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        links.forEach(function(a){ a.classList.remove('active'); });
+        var active = map[entry.target.id];
+        if (active) active.classList.add('active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    cards.forEach(function(card){ observer.observe(card); });
+  } else if (links.length) {
+    links[links.length - 1].classList.add('active');
+  }
+
+  var navInner = document.querySelector('.daynav-inner');
+  var activeLink = document.querySelector('.daynav a.active');
+  if (navInner && activeLink) {
+    navInner.scrollLeft = activeLink.offsetLeft - navInner.clientWidth / 2 + activeLink.clientWidth / 2;
+  }
+
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    toTop.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  toTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+</body>
+</html>
